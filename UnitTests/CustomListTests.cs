@@ -8,11 +8,40 @@ namespace UnitTests
     {
         //Add tests
         [TestMethod]
-        public void AddToList()
+        public void AddIntsToList()
         {
+
+        }
+        public void AddStringsToList()
+        {
+
+        }
+        public void AddObjectsToList()
+        {
+
+        }
+        public void AddDoublesToList()
+        {
+
         }
 
         //Remove tests
+        public void RemoveIntsFromList()
+        {
+
+        }
+        public void RemoveStringFromList()
+        {
+
+        }
+        public void RemoveObjectFromList()
+        {
+
+        }
+        public void RemoveDoubleFromList()
+        {
+
+        }
 
         //Count tests
 
