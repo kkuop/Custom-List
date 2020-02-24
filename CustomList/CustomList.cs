@@ -9,7 +9,7 @@ namespace CustomListProject
     public class CustomList<T>
     {
         //member vars
-        private T[] arrayBackbone = new T[10];
+        private T[] arrayBackbone = new T[4];
         public int Count { get; }
         public int Capacity { get; }
         //constructor
