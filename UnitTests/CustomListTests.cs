@@ -163,6 +163,22 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void RemoveIntThatDoesNotExistInList()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+            //act
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList.Remove(3);
+            actual = customList.Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
 
         //Count tests
 
