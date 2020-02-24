@@ -9,7 +9,7 @@ namespace UnitTests
     {
         //Add tests
         [TestMethod]
-        public void AddIntsToList()
+        public void AddIntegerToListCheckIndexZero()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -22,26 +22,33 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddStringsToList()
+        public void AddStringsToListCheckIndexFive()
         {
             //arrange
             CustomList<string> customList = new CustomList<string>();
-            string expected = "Hello world!";
+            string expected = "world!";
             string actual;
             //act
-            customList.Add("Hello world!");
-            actual = customList[0];
+            customList.Add("Hello");
+            customList.Add("it's");
+            customList.Add("a");
+            customList.Add("whole");
+            customList.Add("new");
+            customList.Add("world!");
+            actual = customList[5];
             //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddObjectsToList()
+        public void AddObjectsToListCheckCount()
         {
             //arrange
             CustomList<Random> customList = new CustomList<Random>();
-            int expected = 1;
+            int expected = 3;
             int actual;
             //act
+            customList.Add(new Random());
+            customList.Add(new Random());
             customList.Add(new Random());
             actual = customList.Count;
             //assert
@@ -63,7 +70,7 @@ namespace UnitTests
 
         //Remove tests
         [TestMethod]
-        public void RemoveIntsFromList()
+        public void RemoveIntsFromListCheckCount()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -78,7 +85,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveStringFromList()
+        public void RemoveStringFromListCheckIndexZero()
         {
             //arrange
             CustomList<string> customList = new CustomList<string>();
@@ -93,7 +100,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveObjectFromList()
+        public void RemoveObjectFromListCheckCount()
         {
             //arrange
             CustomList<Random> customList = new CustomList<Random>();
@@ -110,17 +117,20 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveDoubleFromList()
+        public void RemoveDoubleFromListCheckIndexThree()
         {
             //arrange
             CustomList<double> customList = new CustomList<double>();
-            double expected = 5.54;
+            double expected = 5.51;
             double actual;
             //act
             customList.Add(5.55);
             customList.Add(5.54);
-            customList.Remove(5.54);
-            actual = customList[0];
+            customList.Add(5.53);
+            customList.Add(5.52);
+            customList.Add(5.51);
+            customList.Remove(5.52);
+            actual = customList[3];
             //assert
             Assert.AreEqual(expected, actual);
         }
