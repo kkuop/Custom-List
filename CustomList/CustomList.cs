@@ -22,6 +22,12 @@ namespace CustomListProject
             Count = 0;
             Capacity = 4;
         }
+        private CustomList(int capacity)
+        {
+            arrayBackbone = new T[capacity];
+            Count = 0;
+            Capacity = capacity;
+        }
         
         //member methods
         public void Add(T item)
@@ -52,6 +58,7 @@ namespace CustomListProject
         }
         public void Remove(T item)
         {
+            int incrementer = 0;
             for (int i = 0; i < Count; i++)
             {
                 if (Comparer<T>.Default.Compare(arrayBackbone[i],item) == 0)
@@ -64,9 +71,11 @@ namespace CustomListProject
                         }
                         else
                         {
-                            arrayBackbone[i] = arrayBackbone[i + 1];
+                            arrayBackbone[i + incrementer] = arrayBackbone[i + 1 + incrementer] ;
+                            incrementer++;
                         }
                     }
+                    incrementer = 0;
                     Count -= 1;
                     break;
                 }
@@ -74,29 +83,56 @@ namespace CustomListProject
         }
         public override string ToString()
         {
-            return "";
+            string newString = "";
+            for (int i = 0; i < Count; i++)
+            {
+                newString = newString + this[i].ToString();
+            }
+            return newString;
         }
-        public List<T> Zip(List<T> list, List<T> list1)
+        public CustomList<T> Zip(CustomList<T> list, CustomList<T> list1)
         {
-            List<T> newList = new List<T>();
+            CustomList<T> newList = new CustomList<T>();
             return newList;
         }
-        public List<T> Sort(List<T> list)
+        public CustomList<T> Sort(CustomList<T> list)
         {
             return list;
         }
         public T this[int i]
         {
-            get { return arrayBackbone[i]; }
+            get { if (i < Count) { return arrayBackbone[i]; } else { throw new System.ArgumentException("Index out of range", "i"); } }
             set { arrayBackbone[i] = value; }
         }
-        public readonly struct Plus
+        public static CustomList<T> operator+ (CustomList<T> customList, CustomList<T> customList1)
         {
-
+            CustomList<T> result = new CustomList<T>();
+            result.AddListToList(customList);
+            result.AddListToList(customList1);
+            return result;
         }
-        public readonly struct Minus
+        public static CustomList<T> operator- (CustomList<T> customList, CustomList<T> customList1)
         {
-
+            
+            for (int i = 0; i <customList.Count; i++)
+            {
+                for (int j = 0; j < customList1.Count; j++)
+                {
+                    if(Comparer<T>.Default.Compare(customList[i], customList1[j]) == 0)
+                    {
+                        customList.Remove(customList[i]);
+                    }
+                }
+            }
+            return customList;
+        }
+        private CustomList<T> AddListToList(CustomList<T> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                this.Add(list[i]);
+            }
+            return this;
         }
     }
 }

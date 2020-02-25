@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomListProject;
+using System.Collections.Generic;
 
 namespace UnitTests
 {
@@ -9,7 +10,7 @@ namespace UnitTests
     {
         //Add tests
         [TestMethod]
-        public void AddIntegerToListCheckIndexZero()
+        public void Add_AddIntegerToListCheckIndexZero()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -22,7 +23,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddStringsToListCheckIndexFive()
+        public void Add_AddStringsToListCheckIndexFive()
         {
             //arrange
             CustomList<string> customList = new CustomList<string>();
@@ -40,7 +41,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddObjectsToListCheckCount()
+        public void Add_AddObjectsToListCheckCount()
         {
             //arrange
             CustomList<Random> customList = new CustomList<Random>();
@@ -55,7 +56,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddDoublesToList()
+        public void Add_AddDoublesToList()
         {
             //arrange
             CustomList<double> customList = new CustomList<double>();
@@ -68,7 +69,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddFiveIntsToListCheckCapacity()
+        public void Add_AddFiveIntsToListCheckCapacity()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -85,7 +86,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void AddOneIntToListCheckCapacity()
+        public void Add_AddOneIntToListCheckCapacity()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -99,7 +100,7 @@ namespace UnitTests
         }
         //Remove tests
         [TestMethod]
-        public void RemoveIntsFromListCheckCount()
+        public void Remove_RemoveIntsFromListCheckCount()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -114,7 +115,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveStringFromListCheckIndexZero()
+        public void Remove_RemoveStringFromListCheckIndexZero()
         {
             //arrange
             CustomList<string> customList = new CustomList<string>();
@@ -129,7 +130,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveObjectFromListCheckCount()
+        public void Remove_RemoveObjectFromListCheckCount()
         {
             //arrange
             CustomList<Random> customList = new CustomList<Random>();
@@ -146,7 +147,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveDoubleFromListCheckIndexThree()
+        public void Remove_RemoveDoubleFromListCheckIndexThree()
         {
             //arrange
             CustomList<double> customList = new CustomList<double>();
@@ -164,7 +165,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void RemoveIntThatDoesNotExistInList()
+        public void Remove_RemoveIntThatDoesNotExistInList()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -179,19 +180,219 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
-
+        [TestMethod]
+        public void Remove_RemoveIntAndCheckValuesProperlyShifted()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            int expected = 4;
+            int actual;
+            //act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Remove(2);
+            actual = customList[2];
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //Count tests
-
+        [TestMethod]
+        public void Count_AddThreeIntsCheckCount ()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+            //act
+            customList.Add(5);
+            customList.Add(10);
+            customList.Add(15);
+            actual = customList.Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //Capacity tests
-
+        [TestMethod]
+        public void Capacity_AddNineIntsCheckCapacity()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            int expected = 16;
+            int actual;
+            //act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList.Add(7);
+            customList.Add(8);
+            customList.Add(9);
+            actual = customList.Capacity;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //Indexer tests
-
+        [TestMethod]
+        public void Indexer_AddThreeIntsCheckIndexTwo()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+            //act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            actual = customList[2];
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Indexer_AddThreeIntsCheckIndexThree()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            int actual;
+            //act
+            customList.Add(11);
+            customList.Add(12);
+            customList.Add(13);
+            
+            //assert
+            Assert.ThrowsException<ArgumentException>(() => actual = customList[3]);
+        }
         //ToString tests
-
+        [TestMethod]
+        public void ToString_AddThreeInts()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            string expected = "123";
+            string actual;
+            //act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ToString_AddTwoStrings()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>();
+            string expected = "Hello World!";
+            string actual;
+            //act
+            customList.Add("Hello ");
+            customList.Add("World!");
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ToString_AddSixDoubles()
+        {
+            //arrange
+            CustomList<double> customList = new CustomList<double>();
+            string expected = "1.11.21.31.41.51.6";
+            string actual;
+            //act
+            customList.Add(1.1);
+            customList.Add(1.2);
+            customList.Add(1.3);
+            customList.Add(1.4);
+            customList.Add(1.5);
+            customList.Add(1.6);
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //Overload add tests
-
+        [TestMethod]
+        public void OverloadPlus_CreateTwoIntListsAndAddTogether()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            string expected = "135246";
+            CustomList<int> actual;
+            //act
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+            customList1.Add(2);
+            customList1.Add(4);
+            customList1.Add(6);
+            actual = customList + customList1;
+            //assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
+        [TestMethod]
+        public void OverloadPlus_CreateTwoStringListsAndAddTogether()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>();
+            CustomList<string> customList1 = new CustomList<string>();
+            string expected = "Hello World!";
+            CustomList<string> actual;
+            //act
+            customList.Add("Hello ");
+            customList1.Add("World!");
+            actual = customList+ customList1;
+            //assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
         //Overload minus tests
-
+        [TestMethod]
+        public void OverloadMinus_CreateTwoIntListsAndSubtract()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            string expected = "135";
+            CustomList<int> actual;
+            //act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList1.Add(2);
+            customList1.Add(4);
+            customList1.Add(6);
+            actual = customList - customList1;
+            //assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
+        [TestMethod]
+        public void OverloadMinus_CreateTwoStringListsAndSubtract()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>();
+            CustomList<string> customList1 = new CustomList<string>();
+            string expected = "I am from Milwaukee ";
+            CustomList<string> actual;
+            //act
+            customList.Add("I ");
+            customList.Add("am ");
+            customList.Add("from ");
+            customList.Add("Milwaukee ");
+            customList.Add("Wisconsin ");
+            customList.Add("United States ");
+            customList1.Add("Wisconsin ");
+            customList1.Add("United States ");
+            actual = customList - customList1;
+            //assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
         //Zipper tests
 
         //Iterate tests
