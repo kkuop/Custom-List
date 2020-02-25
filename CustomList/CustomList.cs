@@ -75,6 +75,31 @@ namespace CustomListProject
                 }
             }
         }
+        public void RemoveAt(int index)
+        {
+            int incrementer = 0;
+            for (int i = 0; i < Count; i++)
+            {
+                if(index == i)
+                {
+                    for (int j = 0; j < Count; j++)
+                    {
+                        if(j == Count - 1)
+                        {
+                            arrayBackbone[j] = default;
+                        }
+                        else
+                        {
+                            arrayBackbone[i + incrementer] = arrayBackbone[i + 1 + incrementer];
+                            incrementer++;
+                        }
+                    }
+                    incrementer = 0;
+                    Count -= 1;
+                    break;
+                }
+            }
+        }
         public override string ToString()
         {
             string newString = "";
@@ -108,23 +133,60 @@ namespace CustomListProject
             
             if(direction == "ascending")
             {
-                if(this.GetType()==typeof(byte)||this.GetType()==typeof(decimal)||this.GetType()==typeof(double))
+                for (int i = 0; i < this.Count; i++)
                 {
-                    this.SortListOfTypeNumber();
+                    for (int j = 0; j < this.Count; j++)
+                    {
+                        if (Comparer<T>.Default.Compare(this[i], this[j]) > 0)
+                        {
+                            this.Add(this[i]);
+                            this[i] = this[j];
+                            this.RemoveAt(j);
+                            break;
+                        }
+                    }
                 }
-                else if (this.GetType()==typeof(string)||this.GetType()==typeof(char))
+                //if (this.GetType() == typeof(byte) || this.GetType() == typeof(decimal) || this.GetType() == typeof(double) || this.GetType() == typeof(float) || this.GetType() == typeof(int) || this.GetType() == typeof(long) || this.GetType() == typeof(short))
+                //{
+                //    this.SortListOfTypeNumber();
+                //}
+                //else if (this.GetType() == typeof(string) || this.GetType() == typeof(char))
+                //{
+                //    this.SortListOfTypeNonNumber();
+                //}
+                //else
+                //{
+                //    throw new System.ArgumentException("List is not sortable", "");
+                //}
+            }
+            else if (direction == "descending")
+            {
+                for (int i = 0; i < 1; i++)
                 {
-                    this.SortListOfTypeNonNumber();
+                    for (int j = 0; j < this.Count; j++)
+                    {
+                        if (Comparer<T>.Default.Compare(this[i], this[i + 1]) < 0)
+                        {
+                            this[i] = this[i + 1];
+                        }
+                    }
                 }
-                else
-                {
-
-                }
+                //if (this.GetType() == typeof(byte) || this.GetType() == typeof(decimal) || this.GetType() == typeof(double) || this.GetType() == typeof(float) || this.GetType() == typeof(int) || this.GetType() == typeof(long) || this.GetType() == typeof(short))
+                //{
+                //    this.SortListOfTypeNumber();
+                //}
+                //else if (this.GetType() == typeof(string) || this.GetType() == typeof(char))
+                //{
+                //    this.SortListOfTypeNonNumber();
+                //}
+                //else
+                //{
+                //    throw new System.ArgumentException("List is not sortable", direction);
+                //}
             }
             else
             {
-                //now check what data type can decrease
-
+                throw new System.ArgumentException("that is not a valid sort command", direction);
             }
             return this;
         }
@@ -176,22 +238,59 @@ namespace CustomListProject
         }
         private CustomList<T> SortListOfTypeNumber()
         {
-            if(this.GetType()==typeof(int))
+            if(this.GetType()==typeof(byte))
             {
-
+                for (int i = 0; i < 1; i++)
+                {
+                    for (int j = 0; j < this.Count; j++)
+                    {
+                        if (Comparer<T>.Default.Compare(this[i], this[i + 1]) > 0)
+                        {
+                            this[i] = this[i+1];
+                        }
+                    }                    
+                }
+            }
+            else if(this.GetType()==typeof(decimal))
+            {
+                CustomList<decimal> customList = new CustomList<decimal>();
             }
             else if(this.GetType()==typeof(double))
             {
-
+                CustomList<double> customList = new CustomList<double>();
             }
-            else if(this.GetType()==typeof(long))
+            else if (this.GetType() == typeof(float))
             {
-
+                CustomList<float> customList = new CustomList<float>();
+            }
+            else if (this.GetType() == typeof(int))
+            {
+                CustomList<int> customList = new CustomList<int>();
+            }
+            else if (this.GetType() == typeof(long))
+            {
+                CustomList<long> customList = new CustomList<long>();
+            }
+            else if (this.GetType() == typeof(short))
+            {
+                CustomList<short> customList = new CustomList<short>();
+            }
+            else if (this.GetType() == typeof(sbyte))
+            {
+                CustomList<sbyte> customList = new CustomList<sbyte>();
             }
             return this;
         }
         private CustomList<T> SortListOfTypeNonNumber()
         {
+            if (this.GetType() == typeof(string))
+            {
+                CustomList<string> customList = new CustomList<string>();
+            }
+            else if(this.GetType() == typeof(char))
+            {
+                CustomList<char> customList = new CustomList<char>();
+            }
             return this;
         }
     }
