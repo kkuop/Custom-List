@@ -22,12 +22,6 @@ namespace CustomListProject
             Count = 0;
             Capacity = 4;
         }
-        private CustomList(int capacity)
-        {
-            arrayBackbone = new T[capacity];
-            Count = 0;
-            Capacity = capacity;
-        }
         
         //member methods
         public void Add(T item)

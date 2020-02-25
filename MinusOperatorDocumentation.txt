@@ -1,0 +1,37 @@
+CustomList<T> Operator -
+
+Namespace: CustomListProject
+
+Description: Subtracts the contents of a second list from the first one.
+
+Parameters
+customList CustomList<T>
+customList1 CustomList<T>
+The two lists the subtract operator will work on. 
+
+Returns
+CustomList<T>
+The first one supplied will be returned minus the contents of the second if any.
+
+Example
+
+        public void OverloadMinus_CreateTwoIntListsAndSubtract()
+        {
+
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            CustomList<int> actual;
+
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList1.Add(2);
+            customList1.Add(4);
+            customList1.Add(6);
+            actual = customList - customList1;
+            
+            
+        }
