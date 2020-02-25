@@ -506,7 +506,7 @@ namespace UnitTests
             customList.Add(1);
             customList.Add(3);
             customList.Add(5);
-            customList.Sort("increasing");
+            customList.Sort("ascending");
             //assert
             Assert.AreEqual(expected, customList.ToString());
         }

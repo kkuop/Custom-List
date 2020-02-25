@@ -103,9 +103,29 @@ namespace CustomListProject
             }
             return newList;
         }
-        public CustomList<T> Sort(string direction)
+        public CustomList<T> Sort( string direction)
         {
+            
+            if(direction == "ascending")
+            {
+                if(this.GetType()==typeof(byte)||this.GetType()==typeof(decimal)||this.GetType()==typeof(double))
+                {
+                    this.SortListOfTypeNumber();
+                }
+                else if (this.GetType()==typeof(string)||this.GetType()==typeof(char))
+                {
+                    this.SortListOfTypeNonNumber();
+                }
+                else
+                {
 
+                }
+            }
+            else
+            {
+                //now check what data type can decrease
+
+            }
             return this;
         }
         public T this[int i]
@@ -153,6 +173,26 @@ namespace CustomListProject
             {
                 return list1.Count;
             }
+        }
+        private CustomList<T> SortListOfTypeNumber()
+        {
+            if(this.GetType()==typeof(int))
+            {
+
+            }
+            else if(this.GetType()==typeof(double))
+            {
+
+            }
+            else if(this.GetType()==typeof(long))
+            {
+
+            }
+            return this;
+        }
+        private CustomList<T> SortListOfTypeNonNumber()
+        {
+            return this;
         }
     }
 }
