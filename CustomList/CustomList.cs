@@ -90,9 +90,23 @@ namespace CustomListProject
             }
             return newString;
         }
-        public CustomList<T> Zip(CustomList<T> list, CustomList<T> list1)
+        public CustomList<T> Zip(CustomList<T> list)
         {
+            int higherCountForLoop = SetMaxForZipperLoop(this, list);
+            
             CustomList<T> newList = new CustomList<T>();
+            for (int i = 0; i < higherCountForLoop ; i++)
+            {
+                if(i < this.Count)
+                {
+                    newList.Add(this[i]);
+                }
+                if(i < list.Count)
+                {
+                    newList.Add(list[i]);
+                }
+                
+            }
             return newList;
         }
         public CustomList<T> Sort(CustomList<T> list)
@@ -133,6 +147,17 @@ namespace CustomListProject
                 this.Add(list[i]);
             }
             return this;
+        }
+        private int SetMaxForZipperLoop(CustomList<T> list, CustomList<T> list1) 
+        {
+            if (list.Count > list1.Count)
+            {
+                return list.Count;
+            }
+            else
+            {
+                return list1.Count;
+            }
         }
     }
 }

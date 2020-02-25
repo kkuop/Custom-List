@@ -8,7 +8,9 @@ namespace UnitTests
     [TestClass]
     public class CustomListTests
     {
+        //**************
         //Add tests
+        //**************
         [TestMethod]
         public void Add_AddIntegerToListCheckIndexZero()
         {
@@ -98,7 +100,9 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        //***************
         //Remove tests
+        //***************
         [TestMethod]
         public void Remove_RemoveIntsFromListCheckCount()
         {
@@ -198,7 +202,9 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        //***************
         //Count tests
+        //***************
         [TestMethod]
         public void Count_AddThreeIntsCheckCount ()
         {
@@ -214,7 +220,9 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        //****************
         //Capacity tests
+        //****************
         [TestMethod]
         public void Capacity_AddNineIntsCheckCapacity()
         {
@@ -236,7 +244,9 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        //****************
         //Indexer tests
+        //****************
         [TestMethod]
         public void Indexer_AddThreeIntsCheckIndexTwo()
         {
@@ -266,7 +276,9 @@ namespace UnitTests
             //assert
             Assert.ThrowsException<ArgumentException>(() => actual = customList[3]);
         }
+        //*****************
         //ToString tests
+        //*****************
         [TestMethod]
         public void ToString_AddThreeInts()
         {
@@ -314,7 +326,9 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        //********************
         //Overload add tests
+        //********************
         [TestMethod]
         public void OverloadPlus_CreateTwoIntListsAndAddTogether()
         {
@@ -349,7 +363,9 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual.ToString());
         }
+        //**********************
         //Overload minus tests
+        //**********************
         [TestMethod]
         public void OverloadMinus_CreateTwoIntListsAndSubtract()
         {
@@ -393,10 +409,54 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual.ToString());
         }
+        //****************
         //Zipper tests
-
+        //****************
+        [TestMethod]
+        public void Zipper_ZipTwoIntsListsTogether()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            string expected = "123456";
+            CustomList<int> actual;
+            //act
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+            customList1.Add(2);
+            customList1.Add(4);
+            customList1.Add(6);
+            actual = customList.Zip(customList1);
+            //assert
+            Assert.AreEqual(expected, actual.ToString()) ;
+        }
+        [TestMethod]
+        public void Zipper_ZipTwoStringListsTogether()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>();
+            CustomList<string> customList1 = new CustomList<string>();
+            string expected = "Hello I world am ! from Milwaukee ";
+            CustomList<string> actual;
+            //act
+            customList.Add("Hello ");
+            customList.Add("world ");
+            customList.Add("! ");
+            customList1.Add("I ");
+            customList1.Add("am ");
+            customList1.Add("from ");
+            customList1.Add("Milwaukee ");
+            actual = customList.Zip(customList1);
+            //assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
+        //****************
         //Iterate tests
+        //****************
 
+        //****************
         //BONUS sort tests
+        //****************
     }
 }
