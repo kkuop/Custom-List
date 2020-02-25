@@ -103,9 +103,10 @@ namespace CustomListProject
             }
             return newList;
         }
-        public CustomList<T> Sort(CustomList<T> list)
+        public CustomList<T> Sort(string direction)
         {
-            return list;
+
+            return this;
         }
         public T this[int i]
         {

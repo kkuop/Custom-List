@@ -202,6 +202,22 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Remove_CheckIfMultipleIntsOfSameValueAreRemoved()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            string expected = "1357";
+            //act
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(3);
+            customList.Add(5);
+            customList.Add(7);
+            customList.Remove(3);
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
         //***************
         //Count tests
         //***************
@@ -410,7 +426,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual.ToString());
         }
         [TestMethod]
-        public void OverloadMinus_CheckIfMultipleIntsAreRemovedFromListOne()
+        public void OverloadMinus_CheckIfMultipleSameIntsAreRemovedFromListOne()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
@@ -477,5 +493,22 @@ namespace UnitTests
         //****************
         //BONUS sort tests
         //****************
+        [TestMethod]
+        public void Sort_SortIntsIncreasingInValue()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            string expected = "123456";
+            //act
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+            customList.Sort("increasing");
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
     }
 }
