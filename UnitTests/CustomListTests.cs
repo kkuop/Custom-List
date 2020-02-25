@@ -409,6 +409,25 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual.ToString());
         }
+        [TestMethod]
+        public void OverloadMinus_CheckIfMultipleIntsAreRemovedFromListOne()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            string expected = "13";
+            CustomList<int> actual;
+            //act
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(3);
+            customList1.Add(2);
+            customList1.Add(3);
+            customList1.Add(4);
+            actual = customList - customList1;
+            //assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
         //****************
         //Zipper tests
         //****************
