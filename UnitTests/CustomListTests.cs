@@ -489,7 +489,27 @@ namespace UnitTests
         //****************
         //Iterate tests
         //****************
-
+        [TestMethod]
+        public void Iterate_ConsoleWriteTheContentsOfTheList()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            string expected = "123456";
+            string actual = "";
+            //act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            foreach (int item in customList)
+            {
+                actual = actual + item;
+            }
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //****************
         //BONUS sort tests
         //****************

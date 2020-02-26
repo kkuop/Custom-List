@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListProject
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable<T>
     {
         
         //member vars
@@ -24,6 +25,17 @@ namespace CustomListProject
         }
         
         //member methods
+        public IEnumerator<T> GetEnumerator() 
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                yield return arrayBackbone[i];
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<T>)arrayBackbone).GetEnumerator();
+        }
         public void Add(T item)
         {
             if(Count < Capacity)
@@ -226,5 +238,7 @@ namespace CustomListProject
                 }
             }
         }
+
+
     }
 }
