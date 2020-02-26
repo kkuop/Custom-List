@@ -510,5 +510,22 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, customList.ToString());
         }
+        [TestMethod]
+        public void Sort_SortIntsDecreasingInValue()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>();
+            string expected = "654321";
+            //act
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList.Sort("descending");
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
     }
 }

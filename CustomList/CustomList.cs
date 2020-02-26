@@ -84,9 +84,10 @@ namespace CustomListProject
                 {
                     for (int j = 0; j < Count; j++)
                     {
-                        if(j == Count - 1)
+                        if(j == Count - i - 1)
                         {
-                            arrayBackbone[j] = default;
+                            arrayBackbone[i+incrementer] = default;
+                            break;
                         }
                         else
                         {
@@ -135,54 +136,35 @@ namespace CustomListProject
             {
                 for (int i = 0; i < this.Count; i++)
                 {
-                    for (int j = 0; j < this.Count; j++)
+                    for (int j = i; j < this.Count; j++)
                     {
                         if (Comparer<T>.Default.Compare(this[i], this[j]) > 0)
                         {
                             this.Add(this[i]);
                             this[i] = this[j];
                             this.RemoveAt(j);
+                            i = 0;
                             break;
                         }
                     }
                 }
-                //if (this.GetType() == typeof(byte) || this.GetType() == typeof(decimal) || this.GetType() == typeof(double) || this.GetType() == typeof(float) || this.GetType() == typeof(int) || this.GetType() == typeof(long) || this.GetType() == typeof(short))
-                //{
-                //    this.SortListOfTypeNumber();
-                //}
-                //else if (this.GetType() == typeof(string) || this.GetType() == typeof(char))
-                //{
-                //    this.SortListOfTypeNonNumber();
-                //}
-                //else
-                //{
-                //    throw new System.ArgumentException("List is not sortable", "");
-                //}
             }
             else if (direction == "descending")
             {
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < this.Count; i++)
                 {
-                    for (int j = 0; j < this.Count; j++)
+                    for (int j = i; j < this.Count; j++)
                     {
-                        if (Comparer<T>.Default.Compare(this[i], this[i + 1]) < 0)
+                        if (Comparer<T>.Default.Compare(this[i], this[j]) < 0)
                         {
-                            this[i] = this[i + 1];
+                            this.Add(this[i]);
+                            this[i] = this[j];
+                            this.RemoveAt(j);
+                            i = 0;
+                            break;
                         }
                     }
                 }
-                //if (this.GetType() == typeof(byte) || this.GetType() == typeof(decimal) || this.GetType() == typeof(double) || this.GetType() == typeof(float) || this.GetType() == typeof(int) || this.GetType() == typeof(long) || this.GetType() == typeof(short))
-                //{
-                //    this.SortListOfTypeNumber();
-                //}
-                //else if (this.GetType() == typeof(string) || this.GetType() == typeof(char))
-                //{
-                //    this.SortListOfTypeNonNumber();
-                //}
-                //else
-                //{
-                //    throw new System.ArgumentException("List is not sortable", direction);
-                //}
             }
             else
             {
