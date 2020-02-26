@@ -511,6 +511,37 @@ namespace UnitTests
             Assert.AreEqual(expected, customList.ToString());
         }
         [TestMethod]
+        public void Sort_SortStringsAscending()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>();
+            string expected = "am from I Milwaukee ";
+            //act
+            customList.Add("I ");
+            customList.Add("am ");
+            customList.Add("from ");
+            customList.Add("Milwaukee ");
+            customList.Sort("ascending");
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
+        [TestMethod]
+        public void Sort_SortDoublesAscending()
+        {
+            //arrange
+            CustomList<double> customList = new CustomList<double>();
+            string expected = "1.12.23.34.45.5";
+            //act
+            customList.Add(4.4);
+            customList.Add(2.2);
+            customList.Add(5.5);
+            customList.Add(1.1);
+            customList.Add(3.3);
+            customList.Sort("ascending");
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
+        [TestMethod]
         public void Sort_SortIntsDecreasingInValue()
         {
             //arrange
@@ -523,6 +554,38 @@ namespace UnitTests
             customList.Add(2);
             customList.Add(4);
             customList.Add(6);
+            customList.Sort("descending");
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
+        [TestMethod]
+        public void Sort_SortStringsDescending()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>();
+            string expected = "zippers yellow trees bark alpha ";
+            //act 
+            customList.Add("trees ");
+            customList.Add("yellow ");
+            customList.Add("zippers ");
+            customList.Add("alpha ");
+            customList.Add("bark ");
+            customList.Sort("descending");
+            //assert
+            Assert.AreEqual(expected, customList.ToString());
+        }
+        [TestMethod]
+        public void Sort_SortDoublesDescending()
+        {
+            //arrange
+            CustomList<double> customList = new CustomList<double>();
+            string expected = "9.997.255.312.251.1";
+            //act
+            customList.Add(5.31);
+            customList.Add(7.25);
+            customList.Add(1.1);
+            customList.Add(9.99);
+            customList.Add(2.25);
             customList.Sort("descending");
             //assert
             Assert.AreEqual(expected, customList.ToString());
