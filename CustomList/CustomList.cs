@@ -173,13 +173,14 @@ namespace CustomListProject
         public static CustomList<T> operator- (CustomList<T> customList, CustomList<T> customList1)
         {
             
-            for (int i = 0; i <customList.Count; i++)
+            for (int i = 0; i <customList1.Count; i++)
             {
-                for (int j = 0; j < customList1.Count; j++)
+                for (int j = 0; j < customList.Count; j++)
                 {
-                    if(Comparer<T>.Default.Compare(customList[i], customList1[j]) == 0)
+                    if(Comparer<T>.Default.Compare(customList1[i], customList[j]) == 0)
                     {
-                        customList.Remove(customList[i]);
+                        customList.Remove(customList[j]);
+                        break;
                     }
                 }
             }

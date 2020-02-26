@@ -218,6 +218,7 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, customList.ToString());
         }
+
         //***************
         //Count tests
         //***************
@@ -443,6 +444,19 @@ namespace UnitTests
             actual = customList - customList1;
             //assert
             Assert.AreEqual(expected, actual.ToString());
+        }
+        [TestMethod]
+        public void OverloadMinus_CheckIfTooManyLettersAreRemoved()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string>() { "J", "O", "N", "A", "T", "H", "A", "N" };
+            CustomList<string> customList1 = new CustomList<string>() { "T", "H", "A", "N" };
+            CustomList<string> resultList = new CustomList<string>();
+            string expected = "JOAN";
+            //act
+            resultList = customList - customList1;
+            //assert
+            Assert.AreEqual(expected, resultList.ToString());
         }
         //****************
         //Zipper tests
