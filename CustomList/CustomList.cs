@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListProject
 {
-    public class CustomList<T> : IEnumerable<T>
+    public class CustomList<T> : IEnumerable
     {
         
         //member vars
@@ -25,16 +25,12 @@ namespace CustomListProject
         }
         
         //member methods
-        public IEnumerator<T> GetEnumerator() 
+        public IEnumerator GetEnumerator() 
         {
             for (int i = 0; i < Count; i++)
             {
                 yield return arrayBackbone[i];
             }
-        }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable<T>)arrayBackbone).GetEnumerator();
         }
         public void Add(T item)
         {
