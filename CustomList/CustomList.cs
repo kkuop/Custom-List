@@ -44,6 +44,9 @@ namespace CustomListProject
             }
             else
             {
+                //As a developer, I want to use single responsibility on the 
+                // add method so the logic for increasing the capacity is in
+                // another method
                 IncreaseCapacity(item);                
             }
             Count++;
