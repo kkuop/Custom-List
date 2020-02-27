@@ -218,7 +218,22 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, customList.ToString());
         }
-
+        //******************
+        //RemoveRange tests
+        //******************
+        [TestMethod]
+        public void RemoveRange_CheckIfProperlyRemovingRangeOfInts()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int>() {1,2,3,4,5 };
+            string expected = "125";
+            string actual = "";
+            //act
+            customList.RemoveRange(2, 2);
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //***************
         //Count tests
         //***************

@@ -74,29 +74,37 @@ namespace CustomListProject
         }
         public void RemoveAt(int index)
         {
-            int incrementer = 0;
             for (int i = 0; i < Count; i++)
             {
                 if(index == i)
                 {
-                    for (int j = 0; j < Count; j++)
-                    {
-                        if(j == Count - i - 1)
-                        {
-                            arrayBackbone[i+incrementer] = default;
-                            break;
-                        }
-                        else
-                        {
-                            arrayBackbone[i + incrementer] = arrayBackbone[i + 1 + incrementer];
-                            incrementer++;
-                        }
-                    }
-                    incrementer = 0;
-                    Count -= 1;
-                    break;
+                    Remove(arrayBackbone[i]);
                 }
             }
+        }
+        public void RemoveRange(int index, int count)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (index == i)
+                {
+                    for (int j = 0; j < count; j++)
+                    {
+                        Remove(arrayBackbone[i]);
+                    }
+                }
+            }
+        }
+        public bool Exists(T item)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (Comparer<T>.Default.Compare(arrayBackbone[i], item) == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public override string ToString()
         {
