@@ -141,20 +141,18 @@ namespace CustomListProject
         }
         public CustomList<T> Zip(CustomList<T> list)
         {
-            int higherCountForLoop = SetMaxForZipperLoop(this, list);
-            
+            int higherCountForLoop = SetMaxForZipperLoop(this, list);            
             CustomList<T> newList = new CustomList<T>();
             for (int i = 0; i < higherCountForLoop ; i++)
             {
-                if(i < this.Count)
+                if(i < Count)
                 {
                     newList.Add(this[i]);
                 }
                 if(i < list.Count)
                 {
                     newList.Add(list[i]);
-                }
-                
+                }                
             }
             return newList;
         }

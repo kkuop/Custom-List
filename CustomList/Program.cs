@@ -17,7 +17,7 @@ namespace CustomListProject
             //Console.WriteLine(customList.Zip(customList1).ToString());
             //Console.WriteLine(customList.Sort("descending"));
             //Console.WriteLine(customListStrings.Sort("ascending"));
-            customList.RemoveRange(4, -2);
+            customList.RemoveRange(4, 10);
             Console.WriteLine(customList);
             Console.ReadKey();
         }
