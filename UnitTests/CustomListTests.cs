@@ -504,7 +504,7 @@ namespace UnitTests
         //Iterate tests
         //****************
         [TestMethod]
-        public void Iterate_ConsoleWriteTheContentsOfTheList()
+        public void Iterate_BuildStringWithTheContentsOfTheList()
         {
             //arrange
             CustomList<int> customList = new CustomList<int>();
