@@ -74,29 +74,49 @@ namespace CustomListProject
         }
         public void RemoveAt(int index)
         {
+            int incrementer = 0;
             for (int i = 0; i < Count; i++)
             {
                 if(index == i)
                 {
-                    Remove(arrayBackbone[i]);
+                    for (int j = 0; j < Count; j++)
+                    {
+                        if (j == Count - i - 1)
+                        {
+                            arrayBackbone[i + incrementer] = default;
+                            break;
+                        }
+                        else
+                        {
+                            arrayBackbone[i + incrementer] = arrayBackbone[i + 1 + incrementer];
+                            incrementer++;
+                        }
+                    }
+                    incrementer = 0;
+                    Count -= 1;
+                    break;
                 }
             }
         }
         public void RemoveRange(int index, int count)
         {
-            if(count < 0)
+            if (count < 0)
             {
-                throw new System.ArgumentException("Cannot remove range when count is negative", "count");
+                RemoveRangeNegative(index, count);                
             }
+            else
+            {
+                RemoveRangePositive(index, count);                
+            }
+        }
+        public void Reverse()
+        {
+            int incrementer = 1;
             for (int i = 0; i < Count; i++)
             {
-                if (index == i)
-                {
-                    for (int j = 0; j < count; j++)
-                    {
-                        Remove(arrayBackbone[i]);
-                    }
-                }
+                this.Add(arrayBackbone[Count-i-1]);
+                this.RemoveAt((Count - i) - 2);
+                incrementer++;
             }
         }
         public bool Exists(T item)
@@ -254,6 +274,32 @@ namespace CustomListProject
             arrayBackbone = new T[Capacity * 2];
             arrayBackbone = temporaryArray;
             Capacity = Capacity * 2;
+        }
+        private void RemoveRangeNegative(int index, int count)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (index == i)
+                {
+                    for (int j = 0; j > count; j--)
+                    {
+                        RemoveAt(i + j);
+                    }
+                }
+            }
+        }
+        private void RemoveRangePositive(int index, int count)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (index == i)
+                {
+                    for (int j = 0; j < count; j++)
+                    {
+                        RemoveAt(i);
+                    }
+                }
+            }
         }
     }
 }

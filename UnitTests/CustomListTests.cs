@@ -248,6 +248,46 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        public void RemoveRange_CheckIfSystemExceptionIsProperlyThrown()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int> {1, 2, 3, 4, 5, 6 };
+            string actual;
+            //act
+            customList.RemoveRange(3, -10);
+            actual = customList.ToString();
+            //assert
+            Assert.ThrowsException<ArgumentException>(() => actual);
+        }
+        //*****************
+        //Reverse tests
+        //*****************
+        [TestMethod]
+        public void Reverse_ReverseAnIntList()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            string expected = "10987654321";
+            string actual;
+            //act
+            customList.Reverse();
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Reverse_ReverseAStringList()
+        {
+            //arrange
+            CustomList<string> customList = new CustomList<string> { "I ", "am ", "from ", "Marquette ", "Michigan " };
+            string expected = "Michigan Marquette from am I ";
+            string actual;
+            //act
+            customList.Reverse();
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //*****************
         //Exists tests
         //*****************
