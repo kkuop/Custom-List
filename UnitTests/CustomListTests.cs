@@ -225,12 +225,29 @@ namespace UnitTests
         public void RemoveRange_CheckIfProperlyRemovingRangeOfInts()
         {
             //arrange
-            CustomList<int> customList = new CustomList<int>() {1,2,3,4,5 };
+            CustomList<int> customList;
             string expected = "125";
             string actual = "";
             //act
+            customList = new CustomList<int>() { 1, 2, 3, 4, 5 };
             customList.RemoveRange(2, 2);
             actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        //*****************
+        //Exists tests
+        //*****************
+        [TestMethod]
+        public void Exists_ReturnTrueIfItemIsFoundInList()
+        {
+            //arrange
+            CustomList<string> customList;
+            bool expected = true;
+            bool actual;
+            //act
+            customList = new CustomList<string> { "I ", "am ", "from ", "Marquette ", "Michigan " };
+            actual = customList.Exists("Marquette ");
             //assert
             Assert.AreEqual(expected, actual);
         }
