@@ -235,6 +235,19 @@ namespace UnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void RemoveRange_CheckIfProperlyRemovingRangeWithExcessiveCount()
+        {
+            //arrange
+            CustomList<int> customList = new CustomList<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            string expected = "123";
+            string actual;
+            //act
+            customList.RemoveRange(3, 100);
+            actual = customList.ToString();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
         //*****************
         //Exists tests
         //*****************

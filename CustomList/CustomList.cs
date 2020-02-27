@@ -84,6 +84,10 @@ namespace CustomListProject
         }
         public void RemoveRange(int index, int count)
         {
+            if(count < 0)
+            {
+                throw new System.ArgumentException("Cannot remove range when count is negative", "count");
+            }
             for (int i = 0; i < Count; i++)
             {
                 if (index == i)
