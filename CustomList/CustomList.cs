@@ -44,21 +44,7 @@ namespace CustomListProject
             }
             else
             {
-                T[] temporaryArray = new T[Capacity * 2];
-                for (int i = 0; i < Count + 1; i++)
-                {
-                    if (i == Count)
-                    {
-                        temporaryArray[i] = item;
-                    }
-                    else
-                    {
-                        temporaryArray[i] = arrayBackbone[i];
-                    }
-                }
-                arrayBackbone = new T[Capacity * 2];
-                arrayBackbone = temporaryArray;
-                Capacity = Capacity * 2;
+                IncreaseCapacity(item);                
             }
             Count++;
         }
@@ -240,6 +226,23 @@ namespace CustomListProject
                 }
             }
         }
-        
+        private void IncreaseCapacity(T item)
+        {
+            T[] temporaryArray = new T[Capacity * 2];
+            for (int i = 0; i < Count + 1; i++)
+            {
+                if (i == Count)
+                {
+                    temporaryArray[i] = item;
+                }
+                else
+                {
+                    temporaryArray[i] = arrayBackbone[i];
+                }
+            }
+            arrayBackbone = new T[Capacity * 2];
+            arrayBackbone = temporaryArray;
+            Capacity = Capacity * 2;
+        }
     }
 }
