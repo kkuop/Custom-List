@@ -143,7 +143,8 @@ namespace CustomListProject
         }
         public CustomList<T> Sort( string direction)
         {
-            
+            // As a developer, I want to use Single Responsiblity on the Sort method
+            //  so the logic is broken up into individual methods 
             if(direction == "ascending")
             {
                 this.SortListAscending();
@@ -239,7 +240,6 @@ namespace CustomListProject
                 }
             }
         }
-
-
+        
     }
 }
