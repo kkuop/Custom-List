@@ -449,10 +449,10 @@ namespace UnitTests
         public void OverloadMinus_CheckIfTooManyLettersAreRemoved()
         {
             //arrange
-            CustomList<string> customList = new CustomList<string>() { "J", "O", "N", "A", "T", "H", "A", "N" };
-            CustomList<string> customList1 = new CustomList<string>() { "T", "H", "A", "N" };
+            CustomList<string> customList = new CustomList<string>() { "M", "A", "R", "Q", "U", "E", "T", "T", "E" };
+            CustomList<string> customList1 = new CustomList<string>() { "Q", "U", "E", "T" };
             CustomList<string> resultList = new CustomList<string>();
-            string expected = "JOAN";
+            string expected = "MARTE";
             //act
             resultList = customList - customList1;
             //assert
