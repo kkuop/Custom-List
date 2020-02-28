@@ -111,12 +111,10 @@ namespace CustomListProject
         }
         public void Reverse()
         {
-            int incrementer = 1;
             for (int i = 0; i < Count; i++)
             {
                 this.Add(arrayBackbone[Count-i-1]);
                 this.RemoveAt((Count - i) - 2);
-                incrementer++;
             }
         }
         public bool Exists(T item)
@@ -229,9 +227,9 @@ namespace CustomListProject
                 {
                     if (Comparer<T>.Default.Compare(this[i], this[j]) > 0)
                     {
-                        this.Add(this[i]);
+                        Add(this[i]);
                         this[i] = this[j];
-                        this.RemoveAt(j);
+                        RemoveAt(j);
                         i = -1;
                         break;
                     }
